@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate-skills:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check each skill has a well-formed SKILL.md
+        run: |
+          set -e
+          fail=0
+          for dir in .claude/skills/*/; do
+            name=$(basename "$dir")
+            file="$dir/SKILL.md"
+            if [ ! -f "$file" ]; then
+              echo "::error::$name is missing SKILL.md"
+              fail=1
+              continue
+            fi
+            if ! head -1 "$file" | grep -q '^---$'; then
+              echo "::error file=$file::missing YAML frontmatter (must start with ---)"
+              fail=1
+            fi
+            if ! grep -q '^name:' "$file"; then
+              echo "::error file=$file::frontmatter missing 'name:'"
+              fail=1
+            fi
+            if ! grep -q '^description:' "$file"; then
+              echo "::error file=$file::frontmatter missing 'description:'"
+              fail=1
+            fi
+          done
+          exit $fail
