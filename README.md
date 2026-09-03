@@ -105,11 +105,12 @@ skill needs the shared `references/` files
 `test-driven-development` do), it installs those too, alongside `skills/`,
 at `.claude/references/`.
 
-**No `curl | bash` one-liner is offered.** The installer reads interactively
-from stdin (which skills, which destination); piping it from `curl` would
-feed the installer script itself as its own input instead of your answers,
-so it wouldn't work as a one-liner even as a convenience method. Clone and
-run it locally instead.
+**No `curl | bash` one-liner is offered.** Two independent things break: when
+the script is piped into `bash`, it has no script file location to resolve,
+so it can't reliably find its own repository-relative source files; and the
+installer is interactive — it needs stdin free for your skill, destination,
+and confirmation answers, while a pipe would consume stdin for the script
+content instead. Clone and run it locally instead.
 
 ### Local clone (same thing, if you already have one)
 
