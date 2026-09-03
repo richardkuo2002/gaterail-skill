@@ -43,17 +43,6 @@ cp -r gaterail-skill/.claude/skills/spec-driven-development your-project/.claude
 
 Claude Codeは新しいskillを自動的に検知する。再起動は不要。
 
-## 補足
-
-`spec-driven-development` はさらに `context-engineering` を参照し、実装時に
-仕様の適切な部分とソースファイルを読み込む用途で使う。このskillはこのパック
-には含まれていない——切り出し元のプロジェクトにまだ存在しないため。他の
-skillはこれがなくても問題なく動作する。
-
-ここに含まれるいくつかのskillは、まだこのパックに収録していない他のskill
-（`deprecation-and-migration`、`browser-testing-with-devtools`）を参照して
-いる——これらは任意の深掘り用参照であり、必須ではない。
-
 ## ライセンス
 
 MIT — [LICENSE](LICENSE) を参照。

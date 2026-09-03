@@ -41,16 +41,6 @@ cp -r gaterail-skill/.claude/skills/spec-driven-development your-project/.claude
 
 Claude Code 會自動偵測新的 skill，不用重啟。
 
-## 備註
-
-`spec-driven-development` 還引用了 `context-engineering`，用來在實作階段載入
-對的規格段落與原始檔案。這個 skill 沒收進來——因為在抽出這個 pack 的原始
-專案裡它根本還不存在。其他 skill 沒有它也能正常運作。
-
-這裡有幾個 skill 會指向這個 pack 目前還沒收錄的其他 skill
-（`deprecation-and-migration`、`browser-testing-with-devtools`）——這些只是
-選讀性質的延伸參考，不是必要條件。
-
 ## 授權
 
 MIT — 詳見 [LICENSE](LICENSE)。

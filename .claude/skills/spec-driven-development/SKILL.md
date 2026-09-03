@@ -199,7 +199,7 @@ Break the plan into discrete, implementable tasks:
 
 ### Phase 4: Implement
 
-Execute tasks one at a time following `skills/incremental-implementation/SKILL.md` (`incremental-implementation`) and `skills/test-driven-development/SKILL.md` (`test-driven-development`). Use `skills/context-engineering/SKILL.md` (`context-engineering`) to load the right spec sections and source files at each step rather than flooding the agent with the entire spec.
+Execute tasks one at a time following `skills/incremental-implementation/SKILL.md` (`incremental-implementation`) and `skills/test-driven-development/SKILL.md` (`test-driven-development`). At each step, load only the spec sections and source files that task needs rather than flooding the agent with the entire spec.
 
 ## Keeping the Spec Alive
 

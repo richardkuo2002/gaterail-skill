@@ -43,17 +43,6 @@ cp -r gaterail-skill/.claude/skills/spec-driven-development your-project/.claude
 
 Claude Code picks up new skills automatically — no restart needed.
 
-## Notes
-
-`spec-driven-development` also references `context-engineering` for loading
-the right spec sections and source files during implementation. That skill
-isn't included here — it doesn't exist yet in the source project this pack
-was extracted from. Everything else works standalone without it.
-
-A couple of skills here point to further skills this pack doesn't include
-yet (`deprecation-and-migration`, `browser-testing-with-devtools`) — they're
-optional deeper-dive references, not requirements.
-
 ## License
 
 MIT — see [LICENSE](LICENSE).
