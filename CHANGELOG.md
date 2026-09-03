@@ -2,29 +2,37 @@
 
 All notable changes to this project are documented here.
 
-This project has not yet made a tagged release; nothing below is published
-as a version. Entries move out of Unreleased into a version section only
-when a matching Git tag / GitHub Release is created.
-
 ## Unreleased
+
+No unreleased changes yet.
+
+## [0.1.0] - 2026-09-04
+
+Initial public release. Tagged `v0.1.0` (annotated tag, message
+`GateRail v0.1.0`) and published as GitHub Release "GateRail v0.1.0" on
+`main`, after the root CI workflow succeeded (`validate-skills` and
+`example-tests`).
 
 ### Added
 
-- Seven Claude Code skills: `spec-driven-development`,
+- Seven composable Claude Code workflow skills: `spec-driven-development`,
   `planning-and-task-breakdown`, `api-and-interface-design`,
   `incremental-implementation`, `test-driven-development`,
   `ci-cd-and-automation`, `git-workflow-and-versioning`.
-- Shared references backing the delivery gate:
+- Specification-gate workflow guidance across the first three skills above.
+- Delivery/verification-gate workflow guidance across the remaining four,
+  including the shared references backing them:
   `.claude/references/definition-of-done.md` and
   `.claude/references/testing-patterns.md`.
-- Interactive installer (`install.sh`) with `--dry-run` and `--uninstall`,
-  confirmation before replacing an already-installed skill, and preservation
-  of unrelated files in an existing `references/` directory.
-- Runnable example (`examples/python-cli/`) demonstrating the specification
-  and delivery/verification gates on a small, real change.
-- CI: skill-frontmatter validation, `install.sh` syntax check, internal
-  link/path validation, and the example's test suite.
-- `CONTRIBUTING.md`, `SECURITY.md`, `ROADMAP.md`, issue and pull request
-  templates.
-- README rewritten around the two-gate workflow model, with matching updates
-  to the zh-TW, ja, and ko translations.
+- Interactive installer (`install.sh`) with project-level and global
+  install, safe overwrite confirmation, `--dry-run`, and scoped
+  `--uninstall`.
+- Runnable example (`examples/python-cli/`), a standard-library-only Python
+  CLI demonstrating the specification and delivery/verification gates on a
+  small, real change.
+- Root CI validation for skill frontmatter, `install.sh` shell syntax,
+  documentation paths/links, and the example's test suite.
+- README documentation in English, Traditional Chinese, Japanese, and
+  Korean.
+- MIT license, `CONTRIBUTING.md`, `SECURITY.md`, `ROADMAP.md`, issue and
+  pull request templates.
