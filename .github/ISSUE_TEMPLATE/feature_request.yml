@@ -1,0 +1,27 @@
+name: Feature request
+description: Propose a new skill, a change to an existing one, or an installer/example improvement.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What's the gap?
+      description: A concrete situation the current skills/installer don't handle well, not a general "make it more flexible."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: What would change, in which file(s).
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Existing skill, reference doc, or workaround that's close but doesn't cover it.
+    validations:
+      required: false

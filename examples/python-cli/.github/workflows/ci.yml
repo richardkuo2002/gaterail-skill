@@ -1,0 +1,26 @@
+name: python-cli example CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "examples/python-cli/**"
+      - ".github/workflows/ci.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "examples/python-cli/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Run example tests
+        working-directory: examples/python-cli
+        run: python -m unittest -v

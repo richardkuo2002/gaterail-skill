@@ -34,12 +34,24 @@ cd gaterail-skill
 ```
 skillの一覧を表示し、どれを入れるか（番号をカンマ区切り、または `all`）を
 聞いたあと、現在のプロジェクトに入れるかグローバル（`~/.claude/skills/`）
-に入れるかを聞く。
+に入れるかを聞く。選んだskillが共有の `references/` ファイルを必要とする
+場合（`incremental-implementation`、`planning-and-task-breakdown`、
+`test-driven-development` が該当）、`.claude/references/` にもまとめて
+インストールする。
+
+インストール先に同名のskillが既にある場合は、確認してから上書きする
+（無断で上書きしない）。次のオプションにも対応している：
+```bash
+./install.sh --dry-run      # 同じ対話フローで、何をするか表示するだけ。変更なし
+./install.sh --uninstall    # インストール済みのGateRail skillと共有referencesを削除
+```
 
 **手動インストール（特定のskillだけコピーしたい場合）：**
 ```bash
 cp -r gaterail-skill/.claude/skills/spec-driven-development your-project/.claude/skills/
 ```
+そのskillの`## See Also`が `../../references/*.md` にリンクしている場合は、
+`gaterail-skill/.claude/references/` も一緒にコピーしないとリンク切れになる。
 
 Claude Codeは新しいskillを自動的に検知する。再起動は不要。
 

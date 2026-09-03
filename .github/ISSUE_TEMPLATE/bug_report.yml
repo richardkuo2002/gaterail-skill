@@ -1,0 +1,58 @@
+name: Bug report
+description: Something in a skill, install.sh, or the example behaves incorrectly.
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where is the bug?
+      options:
+        - install.sh
+        - A specific skill (name it below)
+        - examples/python-cli
+        - Documentation (README, etc.)
+        - Something else
+    validations:
+      required: true
+
+  - type: input
+    id: skill-name
+    attributes:
+      label: Skill name (if applicable)
+      placeholder: e.g. incremental-implementation
+    validations:
+      required: false
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: What actually happened?
+      description: Exact output or behavior. Paste terminal output verbatim if you have it.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: The exact command or prompt that triggered it.
+      placeholder: |
+        1. Run `./install.sh` and select ...
+        2. ...
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: OS, Bash version (`bash --version`), Claude Code version if relevant
+    validations:
+      required: false
