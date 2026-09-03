@@ -1,5 +1,7 @@
 # gaterail-skill
 
+[English](README.md) | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
+
 Two [Claude Code](https://claude.com/claude-code) skills that keep an agent
 on rails: spec the work before touching code, then gate every change behind
 CI before it ships. Extracted from a real project and generalized — nothing
