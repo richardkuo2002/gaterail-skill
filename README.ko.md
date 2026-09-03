@@ -3,7 +3,7 @@
 [English](README.md) | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
 
 에이전트가 궤도를 벗어나지 않게 잡아주는 [Claude Code](https://claude.com/claude-code)
-skill 여섯 가지. 코드를 건드리기 전에 스펙을 먼저 쓰고, 순서대로 정리된
+skill 일곱 가지. 코드를 건드리기 전에 스펙을 먼저 쓰고, 순서대로 정리된
 작업으로 나누고, 테스트를 먼저 쓰며 조금씩 구현하고, 배포 전에는 모든
 변경사항이 CI를 통과하도록 게이트를 건다. 실제 프로젝트에서 추출해
 범용화했으며, 원래 프로젝트에 대한 의존성은 남아 있지 않다.
@@ -18,20 +18,27 @@ skill 여섯 가지. 코드를 건드리기 전에 스펙을 먼저 쓰고, 순�
 | [`incremental-implementation`](.claude/skills/incremental-implementation/SKILL.md) | 두 개 이상 파일을 건드리는 변경을 구현할 때 — 한 번에 크게 던지지 않고 작고 검토 가능한 단계로 나눈다. |
 | [`test-driven-development`](.claude/skills/test-driven-development/SKILL.md) | 로직을 구현하거나 버그를 고치거나 동작을 바꿀 때 — 먼저 테스트를 써서 동작을 증명한다. |
 | [`ci-cd-and-automation`](.claude/skills/ci-cd-and-automation/SKILL.md) | CI/CD 파이프라인을 구축하거나 수정할 때 — 품질 게이트, GitHub Actions, 배포 전략, 롤백. |
+| [`git-workflow-and-versioning`](.claude/skills/git-workflow-and-versioning/SKILL.md) | 어떤 코드 변경이든 — 커밋, 브랜치 작업, 충돌 해결, 릴리스 컷, 체인지로그 작성. |
 
 ## 설치
 
 Claude Code는 프로젝트 안의 `.claude/skills/<name>/SKILL.md`에서 skill을
-불러온다. `~/.claude/skills/`에 두면 모든 프로젝트에서 공유된다.
+불러온다. `~/.claude/skills/`에 두면 모든 프로젝트에서 공유된다. 7개를 다
+설치할 필요는 없다 — 실제로 쓸 것만 고르면 된다.
 
-**프로젝트별:**
+**대화형 설치(어떤 skill을, 어디에 설치할지 직접 선택):**
 ```bash
-cp -r gaterail-skill/.claude/skills/* your-project/.claude/skills/
+git clone https://github.com/richardkuo2002/gaterail-skill.git
+cd gaterail-skill
+./install.sh
 ```
+설치 가능한 skill 목록을 보여주고 어떤 걸 설치할지(번호를 쉼표로 구분,
+또는 `all`) 물어본 다음, 현재 프로젝트에 설치할지 전역
+(`~/.claude/skills/`)에 설치할지 물어본다.
 
-**전역(모든 프로젝트 공유):**
+**수동 설치(특정 skill 하나만 복사하고 싶을 때):**
 ```bash
-cp -r gaterail-skill/.claude/skills/* ~/.claude/skills/
+cp -r gaterail-skill/.claude/skills/spec-driven-development your-project/.claude/skills/
 ```
 
 Claude Code가 새 skill을 자동으로 인식한다. 재시작 불필요.
@@ -44,9 +51,8 @@ Claude Code가 새 skill을 자동으로 인식한다. 재시작 불필요.
 나머지는 이것 없이도 잘 동작한다.
 
 여기 있는 skill 중 일부는 아직 이 pack에 포함되지 않은 다른
-skill(`git-workflow-and-versioning`, `deprecation-and-migration`,
-`browser-testing-with-devtools`)을 참조한다 — 선택적으로 더 깊이 볼 수
-있는 참고 자료일 뿐, 필수는 아니다.
+skill(`deprecation-and-migration`, `browser-testing-with-devtools`)을
+참조한다 — 선택적으로 더 깊이 볼 수 있는 참고 자료일 뿐, 필수는 아니다.
 
 ## 라이선스
 

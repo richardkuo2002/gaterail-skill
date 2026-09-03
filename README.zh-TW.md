@@ -2,7 +2,7 @@
 
 [English](README.md) | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
 
-六個 [Claude Code](https://claude.com/claude-code) skill，讓 agent 照著軌道走：
+七個 [Claude Code](https://claude.com/claude-code) skill，讓 agent 照著軌道走：
 動手寫程式前先寫規格、拆成有順序的任務、用測試驅動、一小步一小步實作，每個
 改動上線前都要先過 CI 這一關。從實際專案抽出來後已經通用化——內容不再綁死
 原本的專案。
@@ -17,20 +17,26 @@
 | [`incremental-implementation`](.claude/skills/incremental-implementation/SKILL.md) | 實作會動到一個以上檔案的改動——拆成小步驟、每步都可審查，而不是一次丟出一大包。 |
 | [`test-driven-development`](.claude/skills/test-driven-development/SKILL.md) | 實作邏輯、修 bug、改變行為時——先寫測試證明它動。 |
 | [`ci-cd-and-automation`](.claude/skills/ci-cd-and-automation/SKILL.md) | 建立或修改 CI/CD 流程——品質關卡、GitHub Actions、部署策略、回滾機制。 |
+| [`git-workflow-and-versioning`](.claude/skills/git-workflow-and-versioning/SKILL.md) | 任何程式改動——commit、開分支、解衝突、發版本、寫 changelog。 |
 
 ## 安裝
 
 Claude Code 會從專案裡的 `.claude/skills/<name>/SKILL.md` 載入 skill，
-也支援放在 `~/.claude/skills/` 給所有專案共用。
+也支援放在 `~/.claude/skills/` 給所有專案共用。不用七個全裝——挑你真的會
+用到的就好。
 
-**單一專案：**
+**互動式安裝（選要哪些 skill、裝到哪）：**
 ```bash
-cp -r gaterail-skill/.claude/skills/* your-project/.claude/skills/
+git clone https://github.com/richardkuo2002/gaterail-skill.git
+cd gaterail-skill
+./install.sh
 ```
+它會列出所有 skill，問你要哪幾個（用數字、逗號分隔，或輸入 `all`），
+再問要裝到目前專案還是全域（`~/.claude/skills/`）。
 
-**全域（所有專案共用）：**
+**手動安裝（只想複製某一個 skill）：**
 ```bash
-cp -r gaterail-skill/.claude/skills/* ~/.claude/skills/
+cp -r gaterail-skill/.claude/skills/spec-driven-development your-project/.claude/skills/
 ```
 
 Claude Code 會自動偵測新的 skill，不用重啟。
@@ -42,8 +48,8 @@ Claude Code 會自動偵測新的 skill，不用重啟。
 專案裡它根本還不存在。其他 skill 沒有它也能正常運作。
 
 這裡有幾個 skill 會指向這個 pack 目前還沒收錄的其他 skill
-（`git-workflow-and-versioning`、`deprecation-and-migration`、
-`browser-testing-with-devtools`）——這些只是選讀性質的延伸參考，不是必要條件。
+（`deprecation-and-migration`、`browser-testing-with-devtools`）——這些只是
+選讀性質的延伸參考，不是必要條件。
 
 ## 授權
 

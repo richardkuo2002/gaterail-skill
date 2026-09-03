@@ -2,7 +2,7 @@
 
 [English](README.md) | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
 
-Six [Claude Code](https://claude.com/claude-code) skills that keep an agent
+Seven [Claude Code](https://claude.com/claude-code) skills that keep an agent
 on rails: spec the work before touching code, break it into ordered tasks,
 implement it incrementally with tests, and gate every change behind CI
 before it ships. Extracted from a real project and generalized — nothing
@@ -18,20 +18,27 @@ here is tied to that project anymore.
 | [`incremental-implementation`](.claude/skills/incremental-implementation/SKILL.md) | Implementing any change that touches more than one file — land it in small, reviewable steps instead of one big drop. |
 | [`test-driven-development`](.claude/skills/test-driven-development/SKILL.md) | Implementing logic, fixing a bug, or changing behavior — write the test first to prove it. |
 | [`ci-cd-and-automation`](.claude/skills/ci-cd-and-automation/SKILL.md) | Setting up or changing a CI/CD pipeline — quality gates, GitHub Actions, deployment strategy, rollback. |
+| [`git-workflow-and-versioning`](.claude/skills/git-workflow-and-versioning/SKILL.md) | Making any code change — committing, branching, resolving conflicts, cutting a release, writing a changelog. |
 
 ## Install
 
 Claude Code loads skills from `.claude/skills/<name>/SKILL.md` in a project,
-or from `~/.claude/skills/` for every project.
+or from `~/.claude/skills/` for every project. You don't need all seven —
+pick what you'll actually use.
 
-**Per-project:**
+**Interactive (pick which skills, and where):**
 ```bash
-cp -r gaterail-skill/.claude/skills/* your-project/.claude/skills/
+git clone https://github.com/richardkuo2002/gaterail-skill.git
+cd gaterail-skill
+./install.sh
 ```
+It lists the skills, asks which ones (numbers, comma-separated, or `all`),
+then asks whether to install into the current project or globally
+(`~/.claude/skills/`).
 
-**Global (all projects):**
+**Manual, if you'd rather just copy a specific skill:**
 ```bash
-cp -r gaterail-skill/.claude/skills/* ~/.claude/skills/
+cp -r gaterail-skill/.claude/skills/spec-driven-development your-project/.claude/skills/
 ```
 
 Claude Code picks up new skills automatically — no restart needed.
@@ -43,10 +50,9 @@ the right spec sections and source files during implementation. That skill
 isn't included here — it doesn't exist yet in the source project this pack
 was extracted from. Everything else works standalone without it.
 
-A few skills here point to further skills this pack doesn't include yet
-(`git-workflow-and-versioning`, `deprecation-and-migration`,
-`browser-testing-with-devtools`) — they're optional deeper-dive references,
-not requirements.
+A couple of skills here point to further skills this pack doesn't include
+yet (`deprecation-and-migration`, `browser-testing-with-devtools`) — they're
+optional deeper-dive references, not requirements.
 
 ## License
 
