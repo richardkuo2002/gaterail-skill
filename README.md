@@ -1,17 +1,15 @@
-# agent-skills-pack
+# gaterail-skill
 
-A small set of [Claude Code](https://claude.com/claude-code) skills for
-day-to-day development work: writing a spec before coding, reviewing
-game/simulation logic for state bugs, and setting up CI/CD quality gates.
-Extracted from a real project (a browser strategy game) and generalized —
-none of these reference that project anymore.
+Two [Claude Code](https://claude.com/claude-code) skills that keep an agent
+on rails: spec the work before touching code, then gate every change behind
+CI before it ships. Extracted from a real project and generalized — nothing
+here is tied to that project anymore.
 
 ## Skills included
 
 | Skill | Use when |
 |---|---|
 | [`spec-driven-development`](.claude/skills/spec-driven-development/SKILL.md) | Starting a new project/feature with vague or ambiguous requirements. Gates work through Specify → Plan → Tasks → Implement. |
-| [`game-logic-review`](.claude/skills/game-logic-review/SKILL.md) | Reviewing a change to turn-based/simulation logic — economy, movement, combat, AI, save/load, state sync. |
 | [`ci-cd-and-automation`](.claude/skills/ci-cd-and-automation/SKILL.md) | Setting up or changing a CI/CD pipeline — quality gates, GitHub Actions, deployment strategy, rollback. |
 
 ## Install
@@ -21,12 +19,12 @@ or from `~/.claude/skills/` for every project.
 
 **Per-project:**
 ```bash
-cp -r agent-skills-pack/.claude/skills/* your-project/.claude/skills/
+cp -r gaterail-skill/.claude/skills/* your-project/.claude/skills/
 ```
 
 **Global (all projects):**
 ```bash
-cp -r agent-skills-pack/.claude/skills/* ~/.claude/skills/
+cp -r gaterail-skill/.claude/skills/* ~/.claude/skills/
 ```
 
 Claude Code picks up new skills automatically — no restart needed.
