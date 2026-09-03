@@ -5,8 +5,13 @@ Status: delivery/verification gate passed locally.
 This reports the result of actually running the commands from
 [`approved-spec.md`](approved-spec.md)'s verification plan, from
 `examples/python-cli/`, against the code in this directory. It does not
-claim GitHub Actions ran this — that's a separate, hosted check
-(`.github/workflows/ci.yml` in this directory), not represented here.
+claim GitHub Actions ran this. The `.github/workflows/ci.yml` file in this
+directory documents how the example would run in CI if it were extracted
+into its own repository — GitHub Actions does not discover workflow files
+nested under a subdirectory of this repository, so it never executes here.
+The actual hosted check for this example is the root repository's
+`.github/workflows/ci.yml`, whose `example-tests` job runs the same test
+command.
 
 ## Commands run and results
 
