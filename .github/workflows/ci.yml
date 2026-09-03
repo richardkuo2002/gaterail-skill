@@ -38,3 +38,26 @@ jobs:
             fi
           done
           exit $fail
+
+      - name: Check install.sh syntax
+        run: bash -n install.sh
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Validate internal doc links and referenced paths
+        run: python3 scripts/check_docs_links.py
+
+  example-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Run python-cli example tests
+        working-directory: examples/python-cli
+        run: python -m unittest -v

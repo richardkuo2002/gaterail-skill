@@ -32,12 +32,25 @@ cd gaterail-skill
 ./install.sh
 ```
 它會列出所有 skill，問你要哪幾個（用數字、逗號分隔，或輸入 `all`），
-再問要裝到目前專案還是全域（`~/.claude/skills/`）。
+再問要裝到目前專案還是全域（`~/.claude/skills/`）。如果你選的 skill 需要
+共用的 `references/` 檔案（`incremental-implementation`、
+`planning-and-task-breakdown`、`test-driven-development` 需要），安裝程式
+也會一併裝到 `.claude/references/`。
+
+再次執行安裝程式、選到已經裝過的 skill 時，會先警告並要求確認才會覆蓋，
+不會偷偷蓋掉。也支援：
+```bash
+./install.sh --dry-run      # 走一樣的互動流程，只印出會做什麼，不改任何檔案
+./install.sh --uninstall    # 移除已安裝的 GateRail skill 與共用 references
+```
 
 **手動安裝（只想複製某一個 skill）：**
 ```bash
 cp -r gaterail-skill/.claude/skills/spec-driven-development your-project/.claude/skills/
 ```
+如果那個 skill 的 `## See Also` 有連到 `../../references/*.md`，記得把
+`gaterail-skill/.claude/references/` 也複製到目的地的 `.claude/references/`，
+不然連結會失效。
 
 Claude Code 會自動偵測新的 skill，不用重啟。
 

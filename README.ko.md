@@ -34,12 +34,24 @@ cd gaterail-skill
 ```
 설치 가능한 skill 목록을 보여주고 어떤 걸 설치할지(번호를 쉼표로 구분,
 또는 `all`) 물어본 다음, 현재 프로젝트에 설치할지 전역
-(`~/.claude/skills/`)에 설치할지 물어본다.
+(`~/.claude/skills/`)에 설치할지 물어본다. 선택한 skill이 공유
+`references/` 파일을 필요로 하면(`incremental-implementation`,
+`planning-and-task-breakdown`, `test-driven-development`가 해당),
+`.claude/references/`에도 함께 설치한다.
+
+설치 대상에 같은 이름의 skill이 이미 있으면 확인을 거친 뒤에만 덮어쓴다
+(조용히 덮어쓰지 않는다). 다음 옵션도 지원한다:
+```bash
+./install.sh --dry-run      # 같은 대화형 흐름으로 무엇을 할지만 출력, 변경 없음
+./install.sh --uninstall    # 설치된 GateRail skill과 공유 references 제거
+```
 
 **수동 설치(특정 skill 하나만 복사하고 싶을 때):**
 ```bash
 cp -r gaterail-skill/.claude/skills/spec-driven-development your-project/.claude/skills/
 ```
+해당 skill의 `## See Also`가 `../../references/*.md`를 가리킨다면,
+`gaterail-skill/.claude/references/`도 함께 복사해야 링크가 깨지지 않는다.
 
 Claude Code가 새 skill을 자동으로 인식한다. 재시작 불필요.
 
