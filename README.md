@@ -1,5 +1,8 @@
 # gaterail-skill
 
+[![CI](https://github.com/richardkuo2002/gaterail-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/richardkuo2002/gaterail-skill/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 [English](README.md) | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
 
 > A collection of workflow skills for [Claude Code](https://claude.com/claude-code) that keep an agent on rails: settle what to build before writing code, and don't call it done until it's actually checked.
