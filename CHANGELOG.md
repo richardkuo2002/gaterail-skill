@@ -4,8 +4,15 @@ All notable changes to this project are documented here.
 
 ## Unreleased
 
+No unreleased changes yet.
+
+## [0.1.1] - 2026-09-08
+
+Docs and test-coverage release — no skill or installer behavior changed.
+
 ### Added
 
+- CI/license badges in `README.md`.
 - `tests/test_install.sh`: scripted installer tests (fixed stdin, asserts on
   the resulting filesystem tree in a scratch directory), run in CI on every
   push. Replaces the manual-only checklist previously in `CONTRIBUTING.md`
@@ -14,8 +21,7 @@ All notable changes to this project are documented here.
 
 ## [0.1.0] - 2026-09-04
 
-Initial public release. Tagged `v0.1.0` (annotated tag, message
-`GateRail v0.1.0`) and published as GitHub Release "GateRail v0.1.0" on
+Initial public release, published as GitHub Release "GateRail v0.1.0" on
 `main`, after the root CI workflow succeeded (`validate-skills` and
 `example-tests`).
 
