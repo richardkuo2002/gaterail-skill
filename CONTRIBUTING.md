@@ -34,20 +34,16 @@ apply, a check that's missing) is more useful than "make it more flexible."
 
 ## Testing installer changes
 
-`install.sh` has no automated test suite (it's an interactive script); CI
-only checks `bash -n install.sh` for syntax. Before proposing a change to
-it, exercise it manually in a scratch directory, not against your real
-`~/.claude/skills`:
+`tests/test_install.sh` feeds fixed stdin into `install.sh` inside a scratch
+directory (never your real `~/.claude/skills`) and asserts on the resulting
+filesystem tree; CI runs it on every push, alongside `bash -n install.sh`
+for syntax. Run it locally before proposing a change:
 
 ```bash
-TMP=$(mktemp -d) && cd "$TMP"
-bash /path/to/gaterail-skill/install.sh --dry-run
-bash /path/to/gaterail-skill/install.sh
-bash /path/to/gaterail-skill/install.sh --uninstall --dry-run
-bash /path/to/gaterail-skill/install.sh --uninstall
+bash tests/test_install.sh
 ```
 
-Check at minimum:
+It covers, at minimum:
 
 - A second install over an already-installed skill asks before replacing,
   and declining leaves it untouched.
@@ -55,6 +51,11 @@ Check at minimum:
   survives an install or uninstall.
 - `--uninstall` never deletes `.claude/`, `skills/`, or `references/`
   themselves, even when they end up empty.
+- `--dry-run` makes no filesystem changes.
+
+If your change adds new interactive prompts or destination paths, add a
+case to `tests/test_install.sh` alongside it rather than falling back to
+manual-only verification.
 
 ## Contribution checklist
 
@@ -62,7 +63,7 @@ Check at minimum:
       installer behavior) — not bundled with unrelated cleanup.
 - [ ] If a skill's *behavior* changed (not just wording), the PR description
       includes a before/after example of what the agent would do differently.
-- [ ] If `install.sh` changed, you ran the manual checks above and the
+- [ ] If `install.sh` changed, `bash tests/test_install.sh` passes and the
       relevant README(s) still describe its actual behavior.
 - [ ] `bash -n install.sh` passes.
 - [ ] If `examples/python-cli/` changed, `python -m unittest -v` passes from

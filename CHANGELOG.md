@@ -4,7 +4,13 @@ All notable changes to this project are documented here.
 
 ## Unreleased
 
-No unreleased changes yet.
+### Added
+
+- `tests/test_install.sh`: scripted installer tests (fixed stdin, asserts on
+  the resulting filesystem tree in a scratch directory), run in CI on every
+  push. Replaces the manual-only checklist previously in `CONTRIBUTING.md`
+  for install/dry-run/uninstall/decline-replace/unrelated-file-survives
+  behavior.
 
 ## [0.1.0] - 2026-09-04
 

@@ -5,11 +5,6 @@ they're done or dropped.
 
 ## Near-term (committed direction)
 
-- **Installer tests.** `install.sh` is currently verified by manual exercise
-  (see `CONTRIBUTING.md`) plus `bash -n` in CI. A scripted test harness
-  (feeding fixed stdin, asserting on the resulting filesystem tree in a
-  scratch directory) would catch regressions without a human running the
-  manual checklist every time.
 - **Additional example repositories.** `examples/python-cli/` covers one
   stack (stdlib Python, `unittest`). A second example in a different
   ecosystem (e.g. a stack with a real linter/type-checker/build step) would
