@@ -40,6 +40,7 @@ SCAN_FILES = [
     "ROADMAP.md",
     "CHANGELOG.md",
     "examples/python-cli/README.md",
+    "examples/ts-cli/README.md",
     *sorted(str(p.relative_to(ROOT)) for p in ROOT.glob(".claude/skills/*/SKILL.md")),
 ]
 

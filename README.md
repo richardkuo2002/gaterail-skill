@@ -11,6 +11,51 @@
 
 ![A vague request passes through the specification gate, is implemented in small steps, then passes the delivery gate before it counts as done](docs/hero.svg)
 
+## See it in action
+
+Not a mockup — this is the real, checked-in specification gate output from
+[`examples/python-cli/`](examples/python-cli/) for one small change
+("add `--json` output to a report command"):
+
+```markdown
+# Approved spec: add `--json` to `report`
+
+Status: approved before implementation (specification gate).
+
+## Scope
+- Add a `--json` flag to the `report` subcommand of `app.py`.
+- When passed, print the same underlying counts as a single JSON object on
+  stdout instead of the human-readable text block.
+- No flag: behavior is unchanged.
+
+## Acceptance criteria
+1. `python app.py report` output is byte-for-byte unchanged from before this
+   change.
+2. `python app.py report --json` exits 0, prints nothing to stderr, and
+   prints a single line to stdout that `json.loads()` can parse.
+...
+```
+
+And the delivery/verification gate's output, after implementation — the
+actual test run, not a claim:
+
+```
+$ python -m unittest -v
+test_json_flag_produces_valid_json ... ok
+test_json_and_text_report_the_same_counts ... ok
+test_default_output_is_human_readable_text ... ok
+...
+Ran 7 tests in 0.343s
+
+OK
+```
+
+Full walkthrough, including the request that started it and the
+verification report checked against every acceptance criterion:
+[`examples/python-cli/`](examples/python-cli/README.md). A second worked
+example, [`examples/ts-cli/`](examples/ts-cli/README.md), runs the same two
+gates in TypeScript/Node with a real build and type-check step.
+
 ## Why
 
 An agent can produce a code diff before anyone has agreed on the scope. It can also stop after editing files even though tests, lint, type checks, or the build haven't been run.
@@ -27,6 +72,26 @@ These are **agent-facing workflow instructions written in Markdown**, loaded
 by Claude Code. They tell the agent what to do and in what order. They do not
 technically prevent a filesystem write, a `git merge`, or a CI bypass —
 nothing here is a sandbox or a permission system. See [Limitations](#limitations).
+
+## How this differs from a generic rules file or prompt pile
+
+There are many collections of Claude Code skills, agents, and prompts for
+"spec-driven development." What GateRail specifically is: seven skills that
+all point at the same two checkpoints and the same bar for "done," instead
+of seven independent prompts that each improvise their own.
+
+| | One big `CLAUDE.md` / rules file | An unrelated pile of skills/prompts | GateRail |
+|---|---|---|---|
+| What stops "skip straight to code" | Nothing enforced — one flat file, easy to skim past | Depends entirely on which prompt happens to fire | Two named gates (specification, then delivery) every skill maps to |
+| Shared bar for "done" across skills | Usually none | Usually none | One shared [Definition of Done](.claude/references/definition-of-done.md) every delivery-gate skill points at |
+| States what it doesn't do | Rare | Rare | A dedicated [Limitations](#limitations) section, checked by nothing but honesty |
+| Pick what you need | All-or-nothing | Pick one skill, no coordination with the others | Pick per skill — they're written to hand off to each other explicitly |
+
+This isn't a claim of technical enforcement — see
+[Limitations](#limitations) below, nothing here is a sandbox. It's a claim
+about structure: a shared vocabulary (two gates, one Definition of Done)
+that the seven skills are all written against, instead of each skill
+inventing its own idea of when work is scoped or when it's done.
 
 ## Skills included
 
@@ -175,12 +240,16 @@ didn't install — anything else you've placed under `.claude/skills/` or
 
 ## Try the example
 
-[`examples/python-cli/`](examples/python-cli/) walks the two gates end to
-end on a small, real change to a stdlib-only Python CLI: a request to add
-`--json` output, an approved spec, the implementation, and a verification
-report — with the actual commands to reproduce each step yourself. It
-doesn't call an LLM; it's the artifacts the workflow produces, so you can
-read the whole loop in a few minutes.
+Two worked examples, same request/spec/verification shape, different
+stacks — neither calls an LLM; both are the actual artifacts the workflow
+produces, so you can read the whole loop in a few minutes:
+
+- [`examples/python-cli/`](examples/python-cli/) — stdlib-only Python,
+  `unittest`. The delivery gate here is "tests pass."
+- [`examples/ts-cli/`](examples/ts-cli/) — TypeScript/Node. The delivery
+  gate here also includes a real build (`tsc`) and type-check
+  (`tsc --noEmit`) step, showing the gate isn't limited to "run the test
+  suite."
 
 ## License
 

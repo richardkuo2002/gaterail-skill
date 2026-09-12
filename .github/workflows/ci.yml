@@ -64,3 +64,30 @@ jobs:
       - name: Run python-cli example tests
         working-directory: examples/python-cli
         run: python -m unittest -v
+
+  example-tests-ts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: examples/ts-cli/package-lock.json
+
+      - name: Install
+        working-directory: examples/ts-cli
+        run: npm ci
+
+      - name: Build (tsc)
+        working-directory: examples/ts-cli
+        run: npm run build
+
+      - name: Type-check (tsc --noEmit)
+        working-directory: examples/ts-cli
+        run: npm run typecheck
+
+      - name: Run ts-cli example tests
+        working-directory: examples/ts-cli
+        run: npm test

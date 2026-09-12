@@ -5,10 +5,6 @@ they're done or dropped.
 
 ## Near-term (committed direction)
 
-- **Additional example repositories.** `examples/python-cli/` covers one
-  stack (stdlib Python, `unittest`). A second example in a different
-  ecosystem (e.g. a stack with a real linter/type-checker/build step) would
-  show the delivery gate exercising checks beyond "tests pass."
 - **Clearer compatibility coverage.** Document, per skill, what stacks and
   CI providers its examples assume, and where the guidance is intentionally
   generic vs. where it's been exercised concretely.

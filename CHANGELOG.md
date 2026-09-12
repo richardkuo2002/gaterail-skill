@@ -4,7 +4,14 @@ All notable changes to this project are documented here.
 
 ## Unreleased
 
-No unreleased changes yet.
+### Added
+
+- `examples/ts-cli/`: a second worked example, in TypeScript/Node instead
+  of stdlib Python, showing the delivery gate exercising a real build
+  (`tsc`) and type-check (`tsc --noEmit`) step, not just tests — the
+  `examples/python-cli/` stack has no equivalent. Same request/spec/
+  verification shape as `python-cli`, wired into CI as a new
+  `example-tests-ts` job.
 
 ## [0.1.1] - 2026-09-08
 
