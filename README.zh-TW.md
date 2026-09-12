@@ -2,6 +2,8 @@
 
 [English](README.md) | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
 
+![模糊的需求先通過規格 gate,以小步實作,再通過交付 gate 才算完成](docs/hero.svg)
+
 七個 [Claude Code](https://claude.com/claude-code) skill，讓 agent 照著軌道走：
 動手寫程式前先寫規格、拆成有順序的任務、用測試驅動、一小步一小步實作，每個
 改動上線前都要先過 CI 這一關。從實際專案抽出來後已經通用化——內容不再綁死

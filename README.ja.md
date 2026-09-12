@@ -2,6 +2,8 @@
 
 [English](README.md) | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
 
+![曖昧なリクエストは仕様ゲートを通過し、小さなステップで実装され、納品ゲートを通過してはじめて完了となる](docs/hero.svg)
+
 エージェントを軌道に乗せたまま進める [Claude Code](https://claude.com/claude-code)
 向けの7つのskill。コードを書く前に仕様を固め、順序立てたタスクに分解し、
 テストを書きながら少しずつ実装し、変更を出荷する前には必ずCIを通す。実際の

@@ -9,6 +9,8 @@
 
 [Installation](#installation) · [Example](#try-the-example) · [How it works](#how-it-works) · [Limitations](#limitations)
 
+![A vague request passes through the specification gate, is implemented in small steps, then passes the delivery gate before it counts as done](docs/hero.svg)
+
 ## Why
 
 An agent can produce a code diff before anyone has agreed on the scope. It can also stop after editing files even though tests, lint, type checks, or the build haven't been run.

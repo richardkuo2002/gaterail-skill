@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="240" viewBox="0 0 880 240" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <rect width="880" height="240" rx="12" fill="#0d1117"/>
+
+  <!-- dashed path: vague idea -->
+  <line x1="40" y1="130" x2="230" y2="130" stroke="#8b949e" stroke-width="3" stroke-dasharray="4 10" stroke-linecap="round"/>
+  <text x="135" y="165" fill="#8b949e" font-size="14" text-anchor="middle">vague request</text>
+
+  <!-- gate 1 -->
+  <rect x="230" y="70" width="14" height="120" rx="4" fill="#1f6feb"/>
+  <rect x="316" y="70" width="14" height="120" rx="4" fill="#1f6feb"/>
+  <rect x="230" y="58" width="100" height="14" rx="4" fill="#1f6feb"/>
+  <text x="280" y="105" fill="#79c0ff" font-size="13" text-anchor="middle">spec</text>
+  <text x="280" y="122" fill="#79c0ff" font-size="13" text-anchor="middle">gate</text>
+  <text x="280" y="215" fill="#8b949e" font-size="13" text-anchor="middle">scope · acceptance · tasks</text>
+
+  <!-- solid path: implementation -->
+  <line x1="330" y1="130" x2="550" y2="130" stroke="#e3b341" stroke-width="3" stroke-linecap="round"/>
+  <text x="440" y="165" fill="#e3b341" font-size="14" text-anchor="middle">implement in small steps</text>
+
+  <!-- gate 2 -->
+  <rect x="550" y="70" width="14" height="120" rx="4" fill="#1f6feb"/>
+  <rect x="636" y="70" width="14" height="120" rx="4" fill="#1f6feb"/>
+  <rect x="550" y="58" width="100" height="14" rx="4" fill="#1f6feb"/>
+  <text x="600" y="105" fill="#79c0ff" font-size="13" text-anchor="middle">delivery</text>
+  <text x="600" y="122" fill="#79c0ff" font-size="13" text-anchor="middle">gate</text>
+  <text x="600" y="215" fill="#8b949e" font-size="13" text-anchor="middle">tests · lint · build · DoD</text>
+
+  <!-- done -->
+  <line x1="650" y1="130" x2="770" y2="130" stroke="#3fb950" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="800" cy="130" r="22" fill="none" stroke="#3fb950" stroke-width="3"/>
+  <path d="M 790 130 l 7 8 l 14 -16" fill="none" stroke="#3fb950" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="800" y="185" fill="#3fb950" font-size="14" text-anchor="middle">done</text>
+</svg>

@@ -2,6 +2,8 @@
 
 [English](README.md) | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
 
+![모호한 요청은 스펙 게이트를 통과하고, 작은 단계로 구현된 뒤, 전달 게이트를 통과해야 완료로 인정된다](docs/hero.svg)
+
 에이전트가 궤도를 벗어나지 않게 잡아주는 [Claude Code](https://claude.com/claude-code)
 skill 일곱 가지. 코드를 건드리기 전에 스펙을 먼저 쓰고, 순서대로 정리된
 작업으로 나누고, 테스트를 먼저 쓰며 조금씩 구현하고, 배포 전에는 모든
