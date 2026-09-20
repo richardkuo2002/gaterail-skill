@@ -162,10 +162,15 @@ cat install.sh          # read what you're about to run
 ./install.sh
 ```
 
-There are no tagged releases yet — until one exists, "inspect it" means
-reading `install.sh` and the skill you're about to install (both are plain
-text) before running it, or pinning your clone to a specific reviewed commit
-SHA with `git checkout <sha>`.
+To pin to a reviewed release instead of `main`, check out the latest tag
+(see [Releases](https://github.com/richardkuo2002/gaterail-skill/releases)):
+
+```bash
+git checkout v0.1.1
+```
+
+"Inspect it" means reading `install.sh` and the skill you're about to
+install (both are plain text) before running it.
 
 The installer lists the seven skills, asks which to install (numbers,
 comma-separated, or `all`), then asks whether to install into the current
