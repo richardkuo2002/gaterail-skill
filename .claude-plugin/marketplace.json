@@ -1,0 +1,15 @@
+{
+  "name": "gaterail",
+  "description": "GateRail: workflow skills for Claude Code, gated by specification and delivery checkpoints.",
+  "owner": {
+    "name": "richardkuo2002",
+    "url": "https://github.com/richardkuo2002"
+  },
+  "plugins": [
+    {
+      "name": "gaterail",
+      "source": "./",
+      "description": "Seven Claude Code workflow skills that keep an agent on rails: settle what to build before writing code (specification gate), and don't call it done until it's actually checked (delivery/verification gate)."
+    }
+  ]
+}

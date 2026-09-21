@@ -6,6 +6,13 @@ All notable changes to this project are documented here.
 
 ### Added
 
+- Claude Code plugin packaging: `.claude-plugin/plugin.json` and
+  `.claude-plugin/marketplace.json`, so the repo installs directly via
+  `/plugin marketplace add richardkuo2002/gaterail-skill` +
+  `/plugin install gaterail@gaterail`. Skills load namespaced as
+  `gaterail:<skill-name>`; the existing `.claude/skills/` layout and
+  `install.sh` flow are unchanged.
+
 - `examples/ts-cli/`: a second worked example, in TypeScript/Node instead
   of stdlib Python, showing the delivery gate exercising a real build
   (`tsc`) and type-check (`tsc --noEmit`) step, not just tests — the

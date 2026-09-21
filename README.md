@@ -149,11 +149,32 @@ or from `~/.claude/skills/` for every project — no restart needed once a
 skill file is in place. You don't need all seven skills; pick what you'll
 actually use.
 
+### Recommended: install as a plugin
+
+Inside Claude Code:
+
+```
+/plugin marketplace add richardkuo2002/gaterail-skill
+/plugin install gaterail@gaterail
+```
+
+This installs all seven skills, namespaced under the plugin (e.g.
+`gaterail:spec-driven-development`), with the shared reference files
+included. Updates arrive when the plugin version bumps.
+
+If you previously installed skills via `install.sh`, uninstall those copies
+(`./install.sh --uninstall`) after switching to the plugin — otherwise both
+the plain-named and plugin-namespaced versions stay loaded, which is
+redundant.
+
+### Alternative: clone, inspect, then run the installer
+
+Use this if you want to pick individual skills instead of all seven, or
+vendor the files directly into a project.
+
 **Requirements:** Bash (the installer uses array and parameter-expansion
 features from Bash 3.2+, which is what ships by default on macOS and most
 Linux distributions), `cp`, `git` for cloning.
-
-### Recommended: clone, inspect, then run
 
 ```bash
 git clone https://github.com/richardkuo2002/gaterail-skill.git

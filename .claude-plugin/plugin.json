@@ -1,0 +1,21 @@
+{
+  "name": "gaterail",
+  "displayName": "GateRail",
+  "version": "0.2.0",
+  "description": "Seven Claude Code workflow skills that keep an agent on rails: settle what to build before writing code (specification gate), and don't call it done until it's actually checked (delivery/verification gate).",
+  "author": {
+    "name": "Richard Kuo",
+    "url": "https://github.com/richardkuo2002"
+  },
+  "homepage": "https://github.com/richardkuo2002/gaterail-skill",
+  "repository": "https://github.com/richardkuo2002/gaterail-skill",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "skills",
+    "spec-driven-development",
+    "workflow",
+    "ci-cd"
+  ],
+  "skills": "./.claude/skills/"
+}

@@ -42,6 +42,10 @@ jobs:
       - name: Check install.sh syntax
         run: bash -n install.sh
 
+      - name: Validate plugin manifests are well-formed JSON
+        run: |
+          python3 -c "import json; json.load(open('.claude-plugin/plugin.json')); json.load(open('.claude-plugin/marketplace.json'))"
+
       - name: Run install.sh scripted tests
         run: bash tests/test_install.sh
 
