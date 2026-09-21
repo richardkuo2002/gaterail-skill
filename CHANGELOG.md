@@ -2,7 +2,10 @@
 
 All notable changes to this project are documented here.
 
-## Unreleased
+## [0.2.0] - 2026-09-21
+
+Plugin packaging and a second worked example — no skill content or
+installer behavior changed.
 
 ### Added
 
