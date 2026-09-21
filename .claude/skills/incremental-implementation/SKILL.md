@@ -247,3 +247,5 @@ After completing all increments for a task:
 ## See Also
 
 Per-increment verification is the local check. Before declaring a task done, apply the project-wide Definition of Done as the final gate, the standing bar every increment clears regardless of the task. See `../../references/definition-of-done.md`.
+
+To find the repository's own verification commands (and what to do when it has none), see `../../references/discovering-project-checks.md`.

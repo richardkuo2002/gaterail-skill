@@ -15,7 +15,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILLS_DIR="$ROOT/.claude/skills"
 REFS_SRC_DIR="$ROOT/.claude/references"
-MANAGED_REF_FILES=("definition-of-done.md" "testing-patterns.md")
+MANAGED_REF_FILES=("definition-of-done.md" "testing-patterns.md" "discovering-project-checks.md")
 
 DRY_RUN=0
 UNINSTALL=0

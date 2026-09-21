@@ -17,7 +17,9 @@ invented for it here).
   the fix (see `testing-patterns.md`).
 - [ ] **Relevant checks pass** — lint, type check, build, and test, using the
   repository's own commands, not assumed defaults (`npm test` is a guess;
-  the repo's `package.json` script is the fact).
+  the repo's `package.json` script is the fact). How to find those commands,
+  and what "done" means in a repo that has none: see
+  `discovering-project-checks.md`.
 - [ ] **Documentation and changelog impact considered** — if the change is
   user-visible or changes a public interface, README/CHANGELOG/docs are
   updated in the same change, not deferred.

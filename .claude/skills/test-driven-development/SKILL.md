@@ -33,6 +33,8 @@ The TDD cycle is universal; the commands are not. Before writing the first test,
 
 Run the repository's focused-test command during the loop and its full-suite command before completion. Never assume a default like `npm test` — a Gradle, Cargo, or pytest project has its own equivalent.
 
+For the full discovery procedure — the priority order of sources, verifying a command on the clean tree first, and what to do in a repository with no checks at all — see `../../references/discovering-project-checks.md`.
+
 The examples below use TypeScript for illustration; the workflow is identical in any language once you've discovered the project's own tooling.
 
 ## The TDD Cycle

@@ -229,6 +229,10 @@ npm run lint
 npx tsc --noEmit
 ```
 
+The commands above are the JS/TS shape of the checklist — substitute the
+repository's own equivalents (see
+`../../references/discovering-project-checks.md` for how to find them).
+
 Automate this with git hooks:
 
 ```json

@@ -41,7 +41,9 @@ SCAN_FILES = [
     "CHANGELOG.md",
     "examples/python-cli/README.md",
     "examples/ts-cli/README.md",
+    "docs/compatibility.md",
     *sorted(str(p.relative_to(ROOT)) for p in ROOT.glob(".claude/skills/*/SKILL.md")),
+    *sorted(str(p.relative_to(ROOT)) for p in ROOT.glob(".claude/references/*.md")),
 ]
 
 MD_LINK_RE = re.compile(r"\[[^\]]*\]\(([^)\s]+)\)")

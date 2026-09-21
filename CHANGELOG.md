@@ -2,6 +2,20 @@
 
 All notable changes to this project are documented here.
 
+## Unreleased
+
+### Added
+
+- `.claude/references/discovering-project-checks.md`: the concrete procedure
+  behind every skill's "use the repository's own commands" — priority order
+  of discovery sources (CI workflows first), verifying a command on the
+  clean tree, and what "done" means in a repository with no checks. Linked
+  from `definition-of-done.md` and the three skills that invoke repository
+  commands; the installer now manages it as a third shared reference file.
+- `docs/compatibility.md`: per-skill table of what stacks and CI providers
+  the examples assume, what's exercised concretely in this repository vs.
+  illustrative, and known gaps. Closes both near-term ROADMAP items.
+
 ## [0.2.0] - 2026-09-21
 
 Plugin packaging and a second worked example — no skill content or

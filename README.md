@@ -105,11 +105,18 @@ inventing its own idea of when work is scoped or when it's done.
 | [`ci-cd-and-automation`](.claude/skills/ci-cd-and-automation/SKILL.md) | **Delivery/verification gate.** Setting up or changing a CI/CD pipeline — quality gates, GitHub Actions, deployment strategy, rollback. |
 | [`git-workflow-and-versioning`](.claude/skills/git-workflow-and-versioning/SKILL.md) | **Delivery/verification gate.** Making any code change — committing, branching, resolving conflicts, cutting a release, writing a changelog. |
 
-Two shared references back the delivery gate across skills:
+Three shared references back the delivery gate across skills:
 [`definition-of-done.md`](.claude/references/definition-of-done.md) (the
-standing bar every task clears) and
+standing bar every task clears),
 [`testing-patterns.md`](.claude/references/testing-patterns.md) (default test
-patterns the `test-driven-development` skill points to).
+patterns the `test-driven-development` skill points to), and
+[`discovering-project-checks.md`](.claude/references/discovering-project-checks.md)
+(how to find a repository's own verification commands, and what "done" means
+when it has none).
+
+What each skill assumes about your stack and CI provider, and what's been
+exercised concretely vs. is illustrative: see
+[`docs/compatibility.md`](docs/compatibility.md).
 
 ## How it works
 

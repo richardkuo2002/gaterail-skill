@@ -5,13 +5,9 @@ they're done or dropped.
 
 ## Near-term (committed direction)
 
-- **Clearer compatibility coverage.** Document, per skill, what stacks and
-  CI providers its examples assume, and where the guidance is intentionally
-  generic vs. where it's been exercised concretely.
-- **Integration patterns for repository-defined checks.** Right now each
-  skill tells the agent to "use the repository's own commands." A short,
-  concrete guide for how to make those commands discoverable (e.g. where to
-  look, what to do when none exist yet) would reduce ambiguity.
+- (nothing currently committed — recently shipped: compatibility coverage
+  in `docs/compatibility.md`, and the repository-defined checks guide in
+  `.claude/references/discovering-project-checks.md`)
 
 ## Exploration (not committed)
 
