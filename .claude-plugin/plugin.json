@@ -1,7 +1,7 @@
 {
   "name": "gaterail",
   "displayName": "GateRail",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Seven Claude Code workflow skills that keep an agent on rails: settle what to build before writing code (specification gate), and don't call it done until it's actually checked (delivery/verification gate).",
   "author": {
     "name": "Richard Kuo",

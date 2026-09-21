@@ -2,7 +2,10 @@
 
 All notable changes to this project are documented here.
 
-## Unreleased
+## [0.2.1] - 2026-09-21
+
+New shared reference and compatibility documentation — closes both
+near-term ROADMAP items. No existing skill behavior changed.
 
 ### Added
 
