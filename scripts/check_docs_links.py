@@ -30,6 +30,12 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
+# Root files with no expected siblings stay a fixed list. `docs/` and
+# `examples/*/README.md` glob instead (like `.claude/skills` and
+# `.claude/references` below) — a new doc or worked example used to join
+# this list only if someone remembered to add it by hand; it's now checked
+# the moment it exists. (council review, 2026-10: SCAN_FILES's static vs.
+# glob split was inconsistent for exactly these two growing directories.)
 SCAN_FILES = [
     "README.md",
     "README.zh-TW.md",
@@ -39,9 +45,8 @@ SCAN_FILES = [
     "SECURITY.md",
     "ROADMAP.md",
     "CHANGELOG.md",
-    "examples/python-cli/README.md",
-    "examples/ts-cli/README.md",
-    "docs/compatibility.md",
+    *sorted(str(p.relative_to(ROOT)) for p in ROOT.glob("examples/*/README.md")),
+    *sorted(str(p.relative_to(ROOT)) for p in ROOT.glob("docs/*.md")),
     *sorted(str(p.relative_to(ROOT)) for p in ROOT.glob(".claude/skills/*/SKILL.md")),
     *sorted(str(p.relative_to(ROOT)) for p in ROOT.glob(".claude/references/*.md")),
 ]
@@ -72,7 +77,13 @@ def strip_anchor(target: str) -> str:
 
 
 def check_file(relpath: str) -> list[str]:
-    path = ROOT / relpath
+    return check_file_in(ROOT, relpath)
+
+
+def check_file_in(root: pathlib.Path, relpath: str) -> list[str]:
+    """Same as check_file(), against an arbitrary root — lets tests use a
+    scratch fixture tree instead of this repository's real content."""
+    path = root / relpath
     errors = []
     if not path.is_file():
         return [f"{relpath}: file listed for checking does not exist"]
