@@ -2,6 +2,24 @@
 
 All notable changes to this project are documented here.
 
+## [Unreleased]
+
+Fixes `check_docs_links.py`'s scan scope and gives it its own test
+coverage. No skill content or installer behavior changed.
+
+### Fixed
+
+- `docs/*.md` and `examples/*/README.md` are now globbed instead of
+  hand-maintained, matching how `.claude/skills/*/SKILL.md` and
+  `.claude/references/*.md` were already discovered. A new doc or worked
+  example is checked the moment it exists, instead of silently skipped
+  until someone remembers to add it to the script's file list.
+
+### Added
+
+- `tests/test_check_docs_links.py`: unit tests for the doc-link checker
+  itself, run in CI before it's used to validate the repo's own docs.
+
 ## [0.2.1] - 2026-09-21
 
 New shared reference and compatibility documentation — closes both
