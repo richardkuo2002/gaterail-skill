@@ -4,7 +4,16 @@ All notable changes to this project are documented here.
 
 ## [Unreleased]
 
-Fixes `check_docs_links.py`'s scan scope and gives it its own test
+README narrative rewrite (council review, 2026-10): moves the "Why"
+pain-point section before the demo instead of after it, and rewrites the
+comparison section to name hook-based enforcement tools as a real
+alternative category instead of comparing only against a rules file and
+an unrelated skill pile — repositions GateRail as solving the upstream
+scope-agreement problem those tools don't touch, rather than as a weaker
+version of them. No skill content, installer behavior, or technical
+claims changed; translated READMEs had no equivalent sections to update.
+
+Also fixes `check_docs_links.py`'s scan scope and gives it its own test
 coverage. No skill content or installer behavior changed.
 
 ### Fixed

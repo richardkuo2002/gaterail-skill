@@ -11,6 +11,23 @@
 
 ![A vague request passes through the specification gate, is implemented in small steps, then passes the delivery gate before it counts as done](docs/hero.svg)
 
+## Why
+
+An agent can produce a code diff before anyone has agreed on the scope. It can also stop after editing files even though tests, lint, type checks, or the build haven't been run.
+
+GateRail is seven skills that put two explicit checkpoints — gates — around that gap:
+
+1. **Specification gate** — before implementation, settle scope, acceptance
+   criteria, and task order.
+2. **Delivery/verification gate** — before declaring the work done, apply the
+   repository's own checks (tests, lint, build) and the shared
+   [Definition of Done](.claude/references/definition-of-done.md).
+
+These are **agent-facing workflow instructions written in Markdown**, loaded
+by Claude Code. They tell the agent what to do and in what order. They do not
+technically prevent a filesystem write, a `git merge`, or a CI bypass —
+nothing here is a sandbox or a permission system. See [Limitations](#limitations).
+
 ## See it in action
 
 Not a mockup — this is the real, checked-in specification gate output from
@@ -56,42 +73,31 @@ verification report checked against every acceptance criterion:
 example, [`examples/ts-cli/`](examples/ts-cli/README.md), runs the same two
 gates in TypeScript/Node with a real build and type-check step.
 
-## Why
-
-An agent can produce a code diff before anyone has agreed on the scope. It can also stop after editing files even though tests, lint, type checks, or the build haven't been run.
-
-GateRail is seven skills that put two explicit checkpoints — gates — around that gap:
-
-1. **Specification gate** — before implementation, settle scope, acceptance
-   criteria, and task order.
-2. **Delivery/verification gate** — before declaring the work done, apply the
-   repository's own checks (tests, lint, build) and the shared
-   [Definition of Done](.claude/references/definition-of-done.md).
-
-These are **agent-facing workflow instructions written in Markdown**, loaded
-by Claude Code. They tell the agent what to do and in what order. They do not
-technically prevent a filesystem write, a `git merge`, or a CI bypass —
-nothing here is a sandbox or a permission system. See [Limitations](#limitations).
-
-## How this differs from a generic rules file or prompt pile
+## How this differs from a generic rules file, a prompt pile, or a hard enforcement gate
 
 There are many collections of Claude Code skills, agents, and prompts for
-"spec-driven development." What GateRail specifically is: seven skills that
-all point at the same two checkpoints and the same bar for "done," instead
-of seven independent prompts that each improvise their own.
+"spec-driven development." There's also a separate, growing category of
+tools that technically enforce "done" — a hook that blocks `commit`, `push`,
+or CI until checks pass. GateRail isn't a weaker version of either. It
+addresses the half of the problem both of those sit downstream of: by the
+time a rules file, a prompt, or an enforcement hook looks at a diff, the
+scope that diff is supposed to satisfy may never have actually been agreed
+on.
 
-| | One big `CLAUDE.md` / rules file | An unrelated pile of skills/prompts | GateRail |
-|---|---|---|---|
-| What stops "skip straight to code" | Nothing enforced — one flat file, easy to skim past | Depends entirely on which prompt happens to fire | Two named gates (specification, then delivery) every skill maps to |
-| Shared bar for "done" across skills | Usually none | Usually none | One shared [Definition of Done](.claude/references/definition-of-done.md) every delivery-gate skill points at |
-| States what it doesn't do | Rare | Rare | A dedicated [Limitations](#limitations) section, checked by nothing but honesty |
-| Pick what you need | All-or-nothing | Pick one skill, no coordination with the others | Pick per skill — they're written to hand off to each other explicitly |
+| | One big `CLAUDE.md` / rules file | An unrelated pile of skills/prompts | A hook-based enforcement tool (blocks commit/push/CI until checks pass) | GateRail |
+|---|---|---|---|---|
+| Stops the agent from inventing its own scope before any code exists | Nothing enforced — one flat file, easy to skim past | Depends entirely on which prompt happens to fire | Not its job — it checks the diff, not the request that produced it | **Specification gate** — scope, acceptance criteria, and task order settled before implementation starts |
+| Technically blocks a bad commit/push | No | No | **Yes — this is what these tools are for** | No — see [Limitations](#limitations); pair GateRail with one of these if you want both |
+| Shared bar for "done" across skills/checks | Usually none | Usually none | One config file, mechanically checked | One shared [Definition of Done](.claude/references/definition-of-done.md) every delivery-gate skill points at |
+| States what it doesn't do | Rare | Rare | Rare | A dedicated [Limitations](#limitations) section, checked by nothing but honesty |
+| Pick what you need | All-or-nothing | Pick one skill, no coordination with the others | All-or-nothing — the hook is the product | Pick per skill — they're written to hand off to each other explicitly |
 
 This isn't a claim of technical enforcement — see
 [Limitations](#limitations) below, nothing here is a sandbox. It's a claim
-about structure: a shared vocabulary (two gates, one Definition of Done)
-that the seven skills are all written against, instead of each skill
-inventing its own idea of when work is scoped or when it's done.
+about which half of the problem it addresses: a shared vocabulary (two
+gates, one Definition of Done) for the upstream question — did anyone agree
+on this before the agent started? — that an enforcement hook never asks,
+because by the time it runs, the code already exists.
 
 ## Skills included
 
