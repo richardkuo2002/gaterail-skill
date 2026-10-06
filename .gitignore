@@ -4,3 +4,7 @@ node_modules/
 dist/
 
 .codegraph/
+
+# verify-before-stop.sh's per-project state (fingerprint + retry count),
+# never checked in — see scripts/install-verify-hook.sh.
+.claude/hooks/.gaterail-state

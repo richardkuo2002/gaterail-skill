@@ -4,6 +4,25 @@ All notable changes to this project are documented here.
 
 ## [Unreleased]
 
+Adds an opt-in delivery-gate Stop hook (council review, 2026-10, technical
+differentiation): `.claude/hooks/verify-before-stop.sh` re-runs this
+project's own configured check command(s) before Claude's turn ends, and
+makes Claude keep working instead of finishing if a check fails. Installed
+separately via `scripts/install-verify-hook.sh` (not folded into
+`install.sh` — a materially different, even-more-optional concern). No-op
+until `.claude/hooks/gaterail-checks.txt` is created with real commands —
+never guesses one. Capped at 3 retries on an unchanged diff, then lets the
+turn end with a warning; fails open on Claude Code's own 600s hook timeout.
+This repository now dogfoods it against its own test suite. See the new
+"Delivery-gate Stop hook" README section and Limitations entries for the
+exact guarantees.
+
+### Added
+
+- `.claude/hooks/verify-before-stop.sh`, `.claude/hooks/gaterail-checks.txt.example`
+- `scripts/install-verify-hook.sh` (install / `--dry-run` / `--uninstall`)
+- `tests/test_verify_before_stop.sh`, `tests/test_install_verify_hook.sh`
+
 README narrative rewrite (council review, 2026-10): moves the "Why"
 pain-point section before the demo instead of after it, and rewrites the
 comparison section to name hook-based enforcement tools as a real

@@ -1,0 +1,11 @@
+# This repository dogfoods its own delivery-gate Stop hook. Mirrors
+# .github/workflows/ci.yml's validate-skills job, one line per CI step so a
+# failure names the exact step, plus the other two jobs' checks.
+.	bash -n install.sh && bash -n .claude/hooks/verify-before-stop.sh && bash -n scripts/install-verify-hook.sh
+.	bash tests/test_install.sh
+.	bash tests/test_verify_before_stop.sh
+.	bash tests/test_install_verify_hook.sh
+.	python3 -m unittest tests.test_check_docs_links -v
+.	python3 scripts/check_docs_links.py
+examples/python-cli	python3 -m unittest -v
+examples/ts-cli	npm run build && npm run typecheck && npm test

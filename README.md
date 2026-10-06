@@ -87,7 +87,7 @@ on.
 | | One big `CLAUDE.md` / rules file | An unrelated pile of skills/prompts | A hook-based enforcement tool (blocks commit/push/CI until checks pass) | GateRail |
 |---|---|---|---|---|
 | Stops the agent from inventing its own scope before any code exists | Nothing enforced — one flat file, easy to skim past | Depends entirely on which prompt happens to fire | Not its job — it checks the diff, not the request that produced it | **Specification gate** — scope, acceptance criteria, and task order settled before implementation starts |
-| Technically blocks a bad commit/push | No | No | **Yes — this is what these tools are for** | No — see [Limitations](#limitations); pair GateRail with one of these if you want both |
+| Technically blocks a bad commit/push | No | No | **Yes — this is what these tools are for** | No — an opt-in [Stop hook](#delivery-gate-stop-hook-optional) re-verifies before the *turn* ends, not specifically before `git commit`; see [Limitations](#limitations). Pair GateRail with a commit-level enforcement tool if you want both |
 | Shared bar for "done" across skills/checks | Usually none | Usually none | One config file, mechanically checked | One shared [Definition of Done](.claude/references/definition-of-done.md) every delivery-gate skill points at |
 | States what it doesn't do | Rare | Rare | Rare | A dedicated [Limitations](#limitations) section, checked by nothing but honesty |
 | Pick what you need | All-or-nothing | Pick one skill, no coordination with the others | All-or-nothing — the hook is the product | Pick per skill — they're written to hand off to each other explicitly |
@@ -97,7 +97,10 @@ This isn't a claim of technical enforcement — see
 about which half of the problem it addresses: a shared vocabulary (two
 gates, one Definition of Done) for the upstream question — did anyone agree
 on this before the agent started? — that an enforcement hook never asks,
-because by the time it runs, the code already exists.
+because by the time it runs, the code already exists. (GateRail does also
+ship an opt-in [Stop hook](#delivery-gate-stop-hook-optional) for the
+delivery-gate side specifically — see that section for what it does and
+doesn't guarantee; the seven skills themselves remain prompts either way.)
 
 ## Skills included
 
@@ -141,6 +144,35 @@ Each skill is a `SKILL.md` file Claude Code reads and follows when its
 "Use when" condition matches your request — there's no separate program
 enforcing this sequence; the skills' instructions are what carry it out.
 
+## Delivery-gate Stop hook (optional)
+
+The seven skills above are prompts — nothing stops the agent from ending a
+turn without actually running them. An opt-in Claude Code
+[Stop hook](https://code.claude.com/docs/en/hooks#stop) closes part of that
+gap: `.claude/hooks/verify-before-stop.sh` re-runs this project's own
+configured check command(s) right before Claude's turn ends, and makes
+Claude keep working instead of finishing if a check fails.
+
+```
+./scripts/install-verify-hook.sh
+```
+
+installs the hook script into `./.claude/hooks/` and wires it into
+`./.claude/settings.json` (or prints the snippet to add by hand, if that
+file already has content — it's never auto-edited). The hook is a **no-op**
+until you also create a `gaterail-checks.txt` next to it, naming this
+project's real check command(s) — see
+[`gaterail-checks.txt.example`](.claude/hooks/gaterail-checks.txt.example)
+and [`discovering-project-checks.md`](.claude/references/discovering-project-checks.md)
+for how to find them. It never guesses one for you.
+
+What this is, precisely: it re-verifies before the *turn* ends, using
+whatever command you configured. It is not a `git commit`/`push` blocker,
+has a hard-capped retry (3 attempts on an unchanged diff, then it lets the
+turn end with a warning rather than loop forever), and fails open rather
+than hanging — see [Limitations](#limitations) for the exact guarantees
+this does and doesn't give you.
+
 ## Limitations
 
 - **Not a sandbox, permission system, or branch-protection replacement.**
@@ -154,6 +186,17 @@ enforcing this sequence; the skills' instructions are what carry it out.
 - The delivery gate is only as strong as the repository's own checks. A repo
   with no tests or no CI gets the same encouragement to add them, but nothing
   here fabricates a check that doesn't exist.
+- **The Stop hook is opt-in, best-effort, and fails open, not closed.** It
+  only runs after you install it and the project's own Claude Code
+  workspace-trust prompt has been accepted — it is not silently active in
+  every repository. A hook invocation that exceeds Claude Code's own 600s
+  hook timeout is discarded and the turn ends unblocked, the same as if no
+  hook were configured. After 3 consecutive failures on the same unchanged
+  diff, it stops blocking and lets the turn end with a warning instead of
+  looping forever. It gates the Bash shell's `eval` of whatever command you
+  put in `gaterail-checks.txt` — it is not a sandbox, and a check command
+  that is itself destructive or wrong will run exactly as configured.
+  Bash-only; not tested on Windows.
 
 ## Installation
 
