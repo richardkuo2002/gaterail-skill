@@ -1,0 +1,19 @@
+# GateRail delivery-gate Stop hook — check configuration.
+#
+# One check per line: <cwd> <TAB> <command>
+# - <cwd> is relative to the project root this file lives under.
+# - <command> runs via `eval`, so shell operators (&&, |, etc.) work.
+# - Lines starting with '#', and blank lines, are ignored.
+#
+# This file is NOT auto-enabled — rename it to gaterail-checks.txt (dropping
+# .example) only after filling in commands that actually exist in this
+# repository. An empty or missing gaterail-checks.txt means the hook is a
+# no-op; a wrong command in here means every turn gets blocked on a
+# false failure. Find the real command with
+# ../references/discovering-project-checks.md, verify it passes on a clean
+# checkout first, then add it here.
+#
+# Examples (uncomment and adapt — do not leave these as literal defaults):
+# .    npm test
+# .    pytest
+# examples/ts-cli    npm run build && npm run typecheck && npm test

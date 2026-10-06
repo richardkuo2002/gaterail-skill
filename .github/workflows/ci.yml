@@ -49,6 +49,17 @@ jobs:
       - name: Run install.sh scripted tests
         run: bash tests/test_install.sh
 
+      - name: Check verify-before-stop.sh and install-verify-hook.sh syntax
+        run: |
+          bash -n .claude/hooks/verify-before-stop.sh
+          bash -n scripts/install-verify-hook.sh
+
+      - name: Run verify-before-stop.sh scripted tests
+        run: bash tests/test_verify_before_stop.sh
+
+      - name: Run install-verify-hook.sh scripted tests
+        run: bash tests/test_install_verify_hook.sh
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.x"

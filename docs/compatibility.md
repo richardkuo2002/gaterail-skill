@@ -23,6 +23,13 @@ Shared references:
 | `testing-patterns.md` | **JS/TS-specific by design** (Jest, React Testing Library, Supertest, Playwright); stated in the file itself |
 | `discovering-project-checks.md` | None — covers JS, Python, Go, Rust, JVM, Ruby, PHP discovery sources |
 
+The optional [delivery-gate Stop hook](../README.md#delivery-gate-stop-hook-optional)
+(`../.claude/hooks/verify-before-stop.sh`, installed by
+`../scripts/install-verify-hook.sh`) is **Bash-only, like `install.sh`** —
+not tested on Windows. The check command(s) it runs are whatever you
+configure in `gaterail-checks.txt`, so it's otherwise as stack-agnostic as
+`discovering-project-checks.md` itself.
+
 ## Exercised concretely in this repository
 
 - [`../examples/python-cli/`](../examples/python-cli/) — stdlib Python +
